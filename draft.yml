@@ -1,0 +1,21 @@
+models:
+  Medicine:
+    id
+    nama: string
+    deskripsi: longtext
+    tipe: enum:keras,biasa
+    stok: integer
+
+
+  Records:
+    id
+    recordIndex: integer
+    pasienId: id foreign:user.id
+    dokterId: id foreign:user.id
+    medicineId: id foreign:medicine.id
+    kuantitas : integer
+    tindakan: longtext
+    tglBerobat: timestamp
+    status : enum:delayed,confirmed
+
+seeder: Medicine,Records,User
