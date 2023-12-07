@@ -6,11 +6,11 @@
         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
         <input type="text" name="nama" id="name"
           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Drugs" required="" wire:model="data.nama" >
+          placeholder="Drugs" required="" wire:model="medicine.nama" value={{$medicine->nama}}>
       </div>
       <div class="group">
         <label for="tipe" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipe</label>
-        <select id="tipe" name="tipe" wire:model="data.tipe"
+        <select id="tipe" name="tipe" wire:model="medicine.tipe"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           @php
             $data = ['keras', 'biasa'];
@@ -29,13 +29,13 @@
       <label for="stok" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stok</label>
       <input type="number" name="stok" id="stok"
         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="1-9" required="" wire:model="data.stok">
+        placeholder="1-9" required="" wire:model="medicine.stok" value={{$medicine->stok}}>
     </div>
     <div>
       <label for="disc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label>
       <textarea type="deskripsi" name="deskripsi" id="disc"
         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Drugs Description" required="" wire:model="data.deskripsi">{{$medicine->deskripsi}}</textarea>
+        placeholder="Drugs Description" required="" wire:model="medicine.deskripsi">{{$medicine->deskripsi}}</textarea>
     </div>
 
     <div class="flex justify-end item-center">

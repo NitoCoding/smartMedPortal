@@ -31,7 +31,7 @@ class EditMedicine extends Component
     {
         return view('livewire.medicine.edit-medicine');
     }
-    public function update(Request $request)
+    public function update()
     {
         // dd($this->data);
         // dd($request);
