@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class AddMedicine extends Component
 {
+
     public $data = [
         'nama'=>'',
         'deskripsi'=>'',
@@ -27,7 +28,7 @@ class AddMedicine extends Component
 
     public function store(){
         $this->validate();
-        // dd($this->data);
+        dd($this->data);
         if(Medicine::query()->create($this->data)->save()){
             return redirect()->route('medicine.index');
         }

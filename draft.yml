@@ -10,11 +10,11 @@ models:
   Records:
     id
     recordIndex: integer
-    pasienId: id foreign:user.id
-    dokterId: id foreign:user.id
-    medicineId: id foreign:medicine.id
-    kuantitas : integer
-    tindakan: longtext
+    pasienId: id foreign:users.id
+    dokterId: id foreign:users.id
+    medicineId: nullable id foreign:medicines.id
+    kuantitas : nullable integer
+    tindakan: nullable longtext
     tglBerobat: timestamp
     status : enum:delayed,confirmed
 

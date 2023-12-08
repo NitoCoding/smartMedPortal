@@ -8,17 +8,16 @@ use Livewire\Component;
 class AddUser extends Component
 {
     public $data = [
-        'username'=>'',
+        'name'=>'',
         'email'=>'',
         'password'=>'',
         'role'=>'',
-
     ];
 
     public $rules = [
         'data.email'=>'required|unique:users,email',
         'data.password'=>'required',
-        'data.username'=>'required',
+        'data.name'=>'required',
         'data.role'=>'required',
     ];
     public function render()
@@ -27,7 +26,8 @@ class AddUser extends Component
     }
     public function store(){
         $this->validate();
-        if(User::query()->create($this->data)->save()){
+        // dd(collect($this->data)->except('username')->all());
+        if(User::query()->create(collect($this->data)->except('username')->all())->save()){
             return redirect()->route('user.index');
         }
     }

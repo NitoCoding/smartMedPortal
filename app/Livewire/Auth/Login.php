@@ -25,9 +25,10 @@ class Login extends Component
         return view('livewire.auth.login');
     }
     public function login(){
-        // $this->validate();
-        // logger(Auth::attempt(collect($this->data)->except('rememberme')->all(), $this->data['rememberme']));
-        if (Auth::attempt(collect($this->data)->except('rememberme')->all(), $this->data['rememberme'])) {
+        // dd(collect($this->data)->except('rememberme')->all());
+        $this->validate();
+        // dd(Auth::attempt(collect($this->data)->except('rememberme')->all()));
+        if (Auth::attempt(collect($this->data)->except('rememberme')->all())) {
         //     // dd(Auth::user());
             return redirect()->route('dashboard');
         }

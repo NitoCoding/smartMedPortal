@@ -25,7 +25,7 @@
         @endcan
 
 
-        @canany(['Admin', 'Dokter', 'Pasien'])
+        @canany(['Admin', 'Dokter', 'Pasien','Apoteker'])
         <x-NavLink link="{{ route('records.index') }}" icon="fa-book-medical" name="Records" />
         @endcan
 

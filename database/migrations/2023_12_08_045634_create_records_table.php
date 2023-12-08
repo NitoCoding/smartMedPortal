@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->id();
             $table->integer('recordIndex');
-            $table->foreignId('pasienId')->constrained('user');
-            $table->foreignId('dokterId')->constrained('user');
-            $table->foreignId('medicineId')->constrained('medicine');
-            $table->integer('kuantitas');
-            $table->longText('tindakan');
+            $table->foreignId('pasienId')->constrained('users');
+            $table->foreignId('dokterId')->constrained('users');
+            $table->foreignId('medicineId')->nullable()->constrained('medicines');
+            $table->integer('kuantitas')->nullable();
+            $table->longText('tindakan')->nullable();
             $table->timestamp('tglBerobat');
             $table->enum('status', ["delayed","confirmed"]);
             $table->timestamps();

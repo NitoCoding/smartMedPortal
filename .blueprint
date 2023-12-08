@@ -1,10 +1,10 @@
 created:
     - database/factories/MedicineFactory.php
     - database/factories/RecordsFactory.php
-    - database/migrations/2023_12_07_133105_create_medicines_table.php
-    - database/migrations/2023_12_07_133106_create_records_table.php
+    - database/migrations/2023_12_08_045633_create_medicines_table.php
+    - database/migrations/2023_12_08_045634_create_records_table.php
     - app/Models/Medicine.php
     - app/Models/Records.php
 models:
     Medicine: { id: id, nama: string, deskripsi: longtext, tipe: 'enum:keras,biasa', stok: integer }
-    Records: { id: id, recordIndex: integer, pasienId: 'id foreign:user.id', dokterId: 'id foreign:user.id', medicineId: 'id foreign:medicine.id', kuantitas: integer, tindakan: longtext, tglBerobat: timestamp, status: 'enum:delayed,confirmed' }
+    Records: { id: id, recordIndex: integer, pasienId: 'id foreign:users.id', dokterId: 'id foreign:users.id', medicineId: 'nullable id foreign:medicines.id', kuantitas: 'nullable integer', tindakan: 'nullable longtext', tglBerobat: timestamp, status: 'enum:delayed,confirmed' }

@@ -34,7 +34,7 @@ Route::prefix("auth")->name("auth.")->group(function(){
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route("Auth.login");
+        return redirect()->route("auth.login");
     })->name('logout');
 });
 
@@ -42,17 +42,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/',Dashboard::class)->name('dashboard');
 
-    Route::prefix("Medicine")->name("medicine.")->middleware('can:Admin,Apoteker')->group(function() {
+    Route::prefix("Medicine")->name("medicine.")->group(function() {
         Route::get('/',IndexMedicine::class)->name('index');
         Route::get('add',AddMedicine::class)->name('add');
         Route::get('edit/{medicine}',EditMedicine::class)->name('edit');
     });
-    Route::prefix("Records")->name("records.")->middleware("can:Admin,Apoteker,Dokter,Pasien")->group(function(){
+    Route::prefix("Records")->name("records.")->group(function(){
         Route::get('/',IndexRecords::class)->name('index');
         Route::get('add',AddRecords::class)->name('add');
         Route::get('edit/{records}',EditRecords::class)->name('edit');
     });
-    Route::prefix("User")->name("user.")->middleware("can:Admin")->group(function(){
+    Route::prefix("User")->name("user.")->group(function(){
         Route::get('/',IndexUser::class)->name('index');
         Route::get('add',AddUser::class)->name('add');
         Route::get('edit/{user}',EditUser::class)->name('edit');

@@ -2,30 +2,22 @@
 
 namespace App\Livewire\Medicine;
 
+use App\Livewire\Forms\MedicineForm;
 use App\Models\Medicine;
 use Illuminate\Http\Request;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class EditMedicine extends Component
 {
-    public Medicine $medicine;
+    public MedicineForm $form;
     // public $email;
     // public $tipe;
     // public $name;
 
+    public function mount(Medicine $medicine){
 
-    public $rules = [
-        'medicine.nama'=>'required',
-        'medicine.deskripsi'=>'required',
-        'medicine.tipe'=>'required',
-        'medicine.stok'=>'required|numeric|gt:0',
-    ];
-
-    public function mount(Medicine $medicine)
-    {
-
-        $this->medicine = $medicine;
-
+        $this->form->setMedicine($medicine);
     }
     public function render()
     {
@@ -35,11 +27,18 @@ class EditMedicine extends Component
     {
         // dd($this->data);
         // dd($request);
-        $this->validate();
-        if($this->medicine->save()) {
-            // dd($this);
-            return redirect(route('medicine.index'));
-        }
+        // $this->validate();
+        // if($this->medicine->save()) {
+        //     // dd($this);
+        //     return redirect(route('medicine.index'));
+        // }
         // logger($this->medicine);
+        $this->form->validate();
+        try {
+            $this->form->update();
+            return redirect()->route('medicine.index');
+        } catch (\Throwable $th) {
+            return redirect()->route('medicine.index');
+        }
     }
 }
