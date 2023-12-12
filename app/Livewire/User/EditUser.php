@@ -13,7 +13,8 @@ class EditUser extends Component
 
 
 
-    public function mount(User $user){
+    public function mount(User $user)
+    {
         $this->form->setUser($user);
     }
     // public $rules = [

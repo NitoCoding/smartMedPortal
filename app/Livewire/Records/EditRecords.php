@@ -5,7 +5,9 @@ namespace App\Livewire\Records;
 use App\Livewire\Forms\RecordsForm;
 use App\Models\Medicine;
 use App\Models\Records;
+use App\Models\RecordsMedicines;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class EditRecords extends Component
@@ -20,7 +22,7 @@ class EditRecords extends Component
     {
         $i = $i + 1;
         $this->i = $i;
-        array_push($this->inputs ,$i);
+        array_push($this->inputs, $i);
     }
 
     public function remove($i)
@@ -28,16 +30,21 @@ class EditRecords extends Component
         unset($this->inputs[$i]);
     }
 
-    public function mount(Records $records){
+    public function mount(Records $records)
+    {
         $this->form->setRecords($records);
+        if (RecordsMedicines::where('recordIndex', $records->id)->get() != null) {
+            $this->updateMode = true;
+        }
     }
+
 
     public function render()
     {
-        $dokter = User::where('role','Dokter')->get();
-        $pasien = User::where('role','Pasien')->get();
-        $medicine = Medicine::query()->where('stok','>','0')->get();
-        return view('livewire.records.edit-records',['dokters'=>$dokter,'pasiens'=>$pasien,'medicines'=>$medicine]);
+        $dokter = User::where('role', 'Dokter')->get();
+        $pasien = User::where('role', 'Pasien')->get();
+        $medicine = Medicine::query()->where('stok', '>', '0')->get();
+        return view('livewire.records.edit-records', ['dokters' => $dokter, 'pasiens' => $pasien, 'medicines' => $medicine]);
     }
     public function update()
     {

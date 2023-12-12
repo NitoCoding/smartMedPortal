@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Records;
+use App\Models\RecordsMedicines;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RecordsSeeder extends Seeder
+class RecordsMedicinesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,6 @@ class RecordsSeeder extends Seeder
     public function run(): void
     {
         //
-
-        Records::factory()->count(10)->create();
+        RecordsMedicines::factory()->count(15)->create();
     }
 }

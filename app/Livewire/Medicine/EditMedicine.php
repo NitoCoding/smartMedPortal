@@ -15,7 +15,8 @@ class EditMedicine extends Component
     // public $tipe;
     // public $name;
 
-    public function mount(Medicine $medicine){
+    public function mount(Medicine $medicine)
+    {
 
         $this->form->setMedicine($medicine);
     }

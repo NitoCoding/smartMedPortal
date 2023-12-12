@@ -1,10 +1,15 @@
 created:
     - database/factories/MedicineFactory.php
     - database/factories/RecordsFactory.php
-    - database/migrations/2023_12_08_045633_create_medicines_table.php
-    - database/migrations/2023_12_08_045634_create_records_table.php
+    - database/factories/RecordsMedicinesFactory.php
+    - database/migrations/2023_12_09_204546_create_medicines_table.php
+    - database/migrations/2023_12_09_204547_create_records_table.php
+    - database/migrations/2023_12_09_204548_create_records_medicines_table.php
     - app/Models/Medicine.php
     - app/Models/Records.php
+    - app/Models/RecordsMedicines.php
 models:
     Medicine: { id: id, nama: string, deskripsi: longtext, tipe: 'enum:keras,biasa', stok: integer }
-    Records: { id: id, recordIndex: integer, pasienId: 'id foreign:users.id', dokterId: 'id foreign:users.id', medicineId: 'nullable id foreign:medicines.id', kuantitas: 'nullable integer', tindakan: 'nullable longtext', tglBerobat: timestamp, status: 'enum:delayed,confirmed' }
+    Records: { id: id, pasienId: 'id foreign:users.id', dokterId: 'id foreign:users.id', tindakan: 'nullable longtext', tglBerobat: timestamp, status: 'enum:active,pending,completed' }
+    RecordMedicines: { id: id, recordIndex: 'id foreign:records.id', medicineId: 'nullable id foreign:medicines.id', kuantitas: 'nullable integer' }
+    RecordsMedicines: { id: id, recordIndex: 'id foreign:records.id', medicineId: 'nullable id foreign:medicines.id', kuantitas: 'nullable integer' }

@@ -21,7 +21,8 @@ class MedicineForm extends Form
     #[Rule('required')]
     public $stok = '';
 
-    public function setMedicine(Medicine $medicine){
+    public function setMedicine(Medicine $medicine)
+    {
         $this->medicine = $medicine;
         $this->nama = $medicine->nama;
         $this->deskripsi = $medicine->deskripsi;
@@ -29,12 +30,13 @@ class MedicineForm extends Form
         $this->stok = $medicine->stok;
     }
 
-    public function update(){
+    public function update()
+    {
         return $this->medicine->update([
-            'nama'=>$this->nama,
-            'deskripsi'=>$this->deskripsi,
-            'tipe'=>$this->tipe,
-            'stok'=>$this->stok,
+            'nama' => $this->nama,
+            'deskripsi' => $this->deskripsi,
+            'tipe' => $this->tipe,
+            'stok' => $this->stok,
         ]);
     }
 }

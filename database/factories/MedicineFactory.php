@@ -24,7 +24,7 @@ class MedicineFactory extends Factory
             'nama' => $this->faker->word(),
             'deskripsi' => $this->faker->text(),
             'tipe' => $this->faker->randomElement(["keras","biasa"]),
-            'stok' => $this->faker->numberBetween(-10000, 10000),
+            'stok' => $this->faker->numberBetween(1, 10000),
         ];
     }
 }

@@ -29,7 +29,7 @@
         <x-NavLink link="{{ route('records.index') }}" icon="fa-book-medical" name="Records" />
         @endcan
 
-        @canany(['Admin', 'Apoteker', 'Dokter', 'Pasien'])
+        @canany(['Admin', 'Apoteker'])
         <x-NavLink link="{{ route('medicine.index') }}" icon="fa-prescription-bottle-medical" name="Medicine" />
         @endcan
 

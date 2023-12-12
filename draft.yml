@@ -9,13 +9,16 @@ models:
 
   Records:
     id
-    recordIndex: integer
     pasienId: id foreign:users.id
     dokterId: id foreign:users.id
-    medicineId: nullable id foreign:medicines.id
-    kuantitas : nullable integer
     tindakan: nullable longtext
     tglBerobat: timestamp
-    status : enum:delayed,confirmed
+    status : enum:active,pending,completed
 
-seeder: Medicine,Records,User
+  RecordsMedicines:
+    id
+    recordIndex: id foreign:records.id
+    medicineId: nullable id foreign:medicines.id
+    kuantitas : nullable integer
+
+seeder: Medicine,Records,User,RecordsMedicines

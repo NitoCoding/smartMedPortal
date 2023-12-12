@@ -21,7 +21,8 @@ class UserForm extends Form
     public $name = '';
     public $password = '';
 
-    public function setUser(User $user) {
+    public function setUser(User $user)
+    {
         $this->user = $user;
         $this->name = $user->name;
         $this->email = $user->email;
@@ -29,20 +30,21 @@ class UserForm extends Form
         $this->role = $user->role;
     }
 
-    public function update(){
-        if($this->password == ''){
+    public function update()
+    {
+        if ($this->password == '') {
             return $this->user->update([
-                'name'=>$this->name,
-                'email'=>$this->email,
-                'role'=>$this->role,
-                'password'=>$this->user->password,
+                'name' => $this->name,
+                'email' => $this->email,
+                'role' => $this->role,
+                'password' => $this->user->password,
             ]);
-        }else{
+        } else {
             return $this->user->update([
-                'name'=>$this->name,
-                'email'=>$this->email,
-                'role'=>$this->role,
-                'password'=>Hash::make($this->password),
+                'name' => $this->name,
+                'email' => $this->email,
+                'role' => $this->role,
+                'password' => Hash::make($this->password),
             ]);
 
         }

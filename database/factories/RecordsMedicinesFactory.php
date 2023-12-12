@@ -4,17 +4,18 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Models\Medicine;
 use App\Models\Records;
-use App\Models\User;
+use App\Models\RecordsMedicines;
 
-class RecordsFactory extends Factory
+class RecordsMedicinesFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Records::class;
+    protected $model = RecordsMedicines::class;
 
     /**
      * Define the model's default state.
@@ -22,11 +23,9 @@ class RecordsFactory extends Factory
     public function definition(): array
     {
         return [
-            'pasienId' => User::factory(),
-            'dokterId' => User::factory(),
-            'tindakan' => $this->faker->text(),
-            'tglBerobat' => $this->faker->dateTime(),
-            'status' => $this->faker->randomElement(["active","pending","completed"]),
+            'recordIndex' => Records::factory(),
+            'medicineId' => Medicine::factory(),
+            'kuantitas' => $this->faker->numberBetween(1, 10000),
         ];
     }
 }

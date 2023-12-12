@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Records extends Model
+class RecordsMedicines extends Model
 {
     use HasFactory;
 
@@ -16,11 +16,9 @@ class Records extends Model
      * @var array
      */
     protected $fillable = [
-        'pasienId',
-        'dokterId',
-        'tindakan',
-        'tglBerobat',
-        'status',
+        'recordIndex',
+        'medicineId',
+        'kuantitas',
     ];
 
     /**
@@ -30,18 +28,17 @@ class Records extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'pasienId' => 'integer',
-        'dokterId' => 'integer',
-        'tglBerobat' => 'timestamp',
+        'recordIndex' => 'integer',
+        'medicineId' => 'integer',
     ];
 
-    public function pasienId(): BelongsTo
+    public function recordIndex(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(\App\Models\Records::class);
     }
 
-    public function dokterId(): BelongsTo
+    public function medicineId(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Medicine::class);
     }
 }

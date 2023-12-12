@@ -35,6 +35,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    // public $visible =[
+    //     'name',
+    //     'email',
+    // ];
+
     /**
      * The attributes that should be cast.
      *
@@ -57,4 +62,6 @@ class User extends Authenticatable
     //     }
     //     return $builder;
     // }
+
+
 }

@@ -8,35 +8,47 @@ use Livewire\Component;
 
 class IndexRecords extends Component
 {
+    public $search;
+    protected $querySearch = ['search'];
+
+    public $numRows = 15;
 
     public function render()
     {
-        if(Auth::user()->role == "Dokter" or Auth::user()->role == "Admin"){
-            $collection = Records::latest()->get()->groupBy(function($data) {
-                return $data->recordIndex;
-            });;
-        }else if(Auth::user()->role == "Pasien"){
-            $collection = Records::where("PasienId", Auth::user()->id)->latest()->get()->groupBy(function($data) {
-                return $data->recordIndex;
-            });;
-        }else{
-            $collection = Records::where("status", "delayed")->latest()->get()->groupBy(function($data) {
-                return $data->recordIndex;
-            });;
+        if (Auth::user()->role == "Dokter" or Auth::user()->role == "Admin") {
+            $collection = Records::Where('status','like',"%{$this->search}%")->latest()->paginate($this->numRows);
+            ;
+        } else if (Auth::user()->role == "Pasien") {
+            $collection = Records::where("PasienId", Auth::user()->id)
+            ->orWhere('status','like',"%{$this->search}%")
+            ->latest()->paginate($this->numRows);
+            ;
+        } else if (Auth::user()->role == "Apoteker") {
+            $collection = Records::where("status", "Pending")
+            ->orWhere('status','like',"%{$this->search}%")
+            ->latest()->paginate($this->numRows);
+        } else {
+            abort(403, "Unauthorize action");
         }
-        $collection = Records::all();
-        return view('livewire.records.index-records',['collection'=>$collection]);
+        $collections = Records::paginate($this->numRows);
+        // dd($collection);
+        return view('livewire.records.index-records', [
+            'collection' => $collection,
+            'collections'=>$collections,
+        ]);
     }
 
-    public function delete($recordIndex){
+    public function delete($recordIndex)
+    {
         // $records = Records::find($recordsIndex);
-        $records = Records::where('recordIndex',$recordIndex)->get();
+        $records = Records::where('recordIndex', $recordIndex)->get();
         $records->each->delete();
     }
-    public function changeStatus($recordIndex){
+    public function changeStatus($recordIndex)
+    {
         $data = ["status" => "confirmed"];
-        $records = Records::where('recordIndex',$recordIndex)->get();
-        foreach($records as $record){
+        $records = Records::where('recordIndex', $recordIndex)->get();
+        foreach ($records as $record) {
 
             $record->update($data);
         }

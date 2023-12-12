@@ -9,27 +9,28 @@ use Livewire\Component;
 class Login extends Component
 {
     public $data = [
-        'email'=>'',
-        'password'=>'',
-        'rememberme'=>false
+        'email' => '',
+        'password' => '',
+        'rememberme' => false
     ];
 
     public $rules = [
-        'data.email'=>'required',
-        'data.password'=>'required',
-        'data.rememberme'=>'required',
+        'data.email' => 'required',
+        'data.password' => 'required',
+        'data.rememberme' => 'required',
     ];
     public function render()
     {
 
         return view('livewire.auth.login');
     }
-    public function login(){
+    public function login()
+    {
         // dd(collect($this->data)->except('rememberme')->all());
         $this->validate();
-        // dd(Auth::attempt(collect($this->data)->except('rememberme')->all()));
-        if (Auth::attempt(collect($this->data)->except('rememberme')->all())) {
-        //     // dd(Auth::user());
+        // dd(Auth::attempt(collect($this->data)->except('rememberme')->all(), $this->data['rememberme']));
+        if (Auth::attempt(collect($this->data)->except('rememberme')->all(), $this->data['rememberme'])) {
+            //     // dd(Auth::user());
             return redirect()->route('dashboard');
         }
 

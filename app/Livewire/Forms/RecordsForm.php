@@ -32,9 +32,10 @@ class RecordsForm extends Form
     public $tindakan = '';
 
 
-    public function setRecords(Records $records){
+    public function setRecords(Records $records)
+    {
         // dd($records);
-        $this->records =$records;
+        $this->records = $records;
         $this->recordIndex = $records->recordIndex;
         $this->pasienId = $records->pasienId;
         $this->dokterId = $records->dokterId;
@@ -46,22 +47,23 @@ class RecordsForm extends Form
     //     $this->numberMedicines ;
     // }
     // public function removeNumberMedicine(){
-        //     $this->numberMedicines++;
-        // }
+    //     $this->numberMedicines++;
+    // }
 
-    public function update(){
+    public function update()
+    {
         // for ($i=0; $i < $this->numberMedicines; $i++) {
-            //     # code...
+        //     # code...
         // }
         // dd($this);
         foreach ($this->medicineId as $key => $value) {
             $this->records->update([
-                'recordIndex'=>$this->recordIndex,
-                'pasienId'=>$this->pasienId,
-                'dokterId'=>$this->dokterId,
+                'recordIndex' => $this->recordIndex,
+                'pasienId' => $this->pasienId,
+                'dokterId' => $this->dokterId,
                 'MedicineId' => $this->medicineId[$key],
                 'kuantitas' => $this->kuantitas[$key],
-                'tindakan'=>$this->tindakan
+                'tindakan' => $this->tindakan
             ]);
         }
 
